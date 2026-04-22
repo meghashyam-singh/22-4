@@ -135,7 +135,7 @@ spec:
 
 ---
 apiVersion: v1
-kind: ServiceAccountName
+kind: ServiceAccount
 metadata:
   name: rabbitmq-service-account
   namespace: roboshop
