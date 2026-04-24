@@ -32,11 +32,6 @@ def call(configMap) {
                     }
                 }
             }
-            stage('wait for deployment') {
-                steps {
-                    wait time:30, unit: 'SECONDS'
-                }
-            }
             stage('health check') {
                 steps {
                     withAWS(region:"${REGION}",credentials:'aws-creds') {
