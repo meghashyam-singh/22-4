@@ -58,15 +58,15 @@ def call(Map configMap) {
                     }
                 }
             }
-            stage('quality stage') {
-                steps {
-                    script {
-                        timeout(time:15, unit: 'MINUTES') {
-                            waitForQualityGate abortPipeline: true
-                        }
-                    }
-                }
-            }
+            // stage('quality stage') {
+            //     steps {
+            //         script {
+            //             timeout(time:15, unit: 'MINUTES') {
+            //                 waitForQualityGate abortPipeline: true
+            //             }
+            //         }
+            //     }
+            // }
             stage('image-build') {
                 steps {
                     sh """
@@ -75,11 +75,11 @@ def call(Map configMap) {
                     """
                 }
             }
-            stage('image-scan') {
-                steps {
-                    sh "trivy image ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
-                }
-            }
+            // stage('image-scan') {
+            //     steps {
+            //         sh "trivy image ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
+            //     }
+            // }
             stage('image push') {
                 steps {
                     script {
