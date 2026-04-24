@@ -6,7 +6,7 @@ def call(Map configMap) {
             }
         }
         environment {
-            env.APPVERSION = ""
+            APPVERSION = ""
             REGION = "us-east-1"
             ACCOUNT_ID = "515138251473"
             COMPONENT = "${configMap.COMPONENT}"
