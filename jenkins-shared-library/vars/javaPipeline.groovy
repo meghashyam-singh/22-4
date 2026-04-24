@@ -16,7 +16,7 @@ def call(Map configMap) {
         }
         options {
             timeout(time:15, unit: 'MINUTES')
-            disableConcurrentBuild()
+            disableConcurrentBuilds()
         }
         stages {
             stage('clean workspce') {
