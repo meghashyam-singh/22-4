@@ -52,7 +52,7 @@ spec:
               path: /health
               port: shipping-port
             failureThreshold: 2
-            initailDelaySeconds: 40
+            initialDelaySeconds: 40
             periodSeconds: 40
             timeoutSeconds: 20
           livenessProbe:
@@ -60,7 +60,7 @@ spec:
               path: /health
               port: shipping-port
             failureThreshold: 2
-            initailDelaySeconds: 40
+            initialDelaySeconds: 40
             periodSeconds: 40
             timeoutSeconds: 20
           envFrom:
