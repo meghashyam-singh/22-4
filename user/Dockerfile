@@ -9,7 +9,7 @@ WORKDIR /app
 RUN addgroup -S roboshop
 RUN adduser -S roboshop -G roboshop
 COPY --from=builder /app /app
-RUN chown -R roboshop/roboshop /app
+RUN chown -R roboshop:roboshop /app
 ENV MONGO=true \
     REDIS_URL="redis://redis-cont:6379" \
     MONGO_URL="mongodb://mongodb-cont:27017/users"
