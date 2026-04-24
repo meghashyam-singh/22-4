@@ -35,7 +35,7 @@ def call(configMap) {
             stage('health check') {
                 steps {
                     withAWS(region:"${REGION}",credentials:'aws-creds') {
-                        sh " kubectl rollout status deployment ${COMPONENT}"
+                        sh " kubectl rollout status deployment ${COMPONENT} -n roboshop"
                     }
                 }
             }
