@@ -33,7 +33,8 @@ def call(Map configMap) {
                 steps {
                     dir("${COMPONENT}") {
                         script {
-                            env.APPVERSION = readFile('version.txt').trim()
+                            def version = readFile('version.txt').trim()
+                            env.APPVERSION = version
                             echo "APPVERSION IS: ${env.APPVERSION}"
                         }
                     }
