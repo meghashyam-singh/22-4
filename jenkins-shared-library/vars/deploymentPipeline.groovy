@@ -32,7 +32,7 @@ def call(configMap) {
                     }
                 }
             }
-            stage {
+            stage('wait for deployment') {
                 steps {
                     wait time:30, unit: 'SECONDS'
                 }
