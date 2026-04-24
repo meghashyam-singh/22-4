@@ -43,7 +43,7 @@ spec:
             - containerPort: 8080
               name: cart-port
           readinessProbe:
-            htppGet:
+            httpGet:
               path: /health
               port: cart-port
             failureThreshold: 2
@@ -51,7 +51,7 @@ spec:
             periodSeconds: 40
             timeoutSeconds: 20
           livenessProbe:
-            htppGet:
+            httpGet:
               path: /health
               port: cart-port
             failureThreshold: 2
