@@ -20,7 +20,9 @@ def call(configMap) {
         }
         stages {
             stage('clean workspace') {
-                cleanWs()
+                steps {
+                    cleanWs()
+                }
             }
             stage('get code') {
                 steps {
