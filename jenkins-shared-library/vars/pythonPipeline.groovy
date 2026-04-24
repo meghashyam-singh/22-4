@@ -33,8 +33,7 @@ def call(Map configMap) {
                 steps {
                     dir("${COMPONENT}") {
                         script {
-                            def version = readFile('version.txt').trim()
-                            env.APPVERSION = version
+                            def env.APPVERSION = readFile('version.txt').trim()
                             echo "APPVERSION IS: ${env.APPVERSION}"
                         }
                     }
@@ -78,7 +77,7 @@ def call(Map configMap) {
             }
             // stage('image-scan') {
             //     steps {
-            //         sh "trivy image ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
+            //         sh "trivy image ${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
             //     }
             // }
             stage('image push') {
