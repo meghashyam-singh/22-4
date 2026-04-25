@@ -9,7 +9,7 @@ RUN apk add --no-cache uwsgi uwsgi-python3
 WORKDIR /app
 COPY requirements.txt .
 COPY . .
-RUN pip3 install --prefix-/install -r requirements.txt
+RUN pip3 install --prefix=/install -r requirements.txt
 
 FROM python:3.11-alpine3.22 
 WORKDIR /app
