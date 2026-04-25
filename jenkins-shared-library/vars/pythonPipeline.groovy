@@ -33,8 +33,8 @@ def call(Map configMap) {
                 steps {
                     dir("${COMPONENT}") {
                         script {
-                            def env.APPVERSION = readFile('version.txt').trim()
-                            echo "APPVERSION IS: ${env.APPVERSION}"
+                            def APPVERSION = readFile('version.txt').trim()
+                            echo "APPVERSION IS: ${APPVERSION}"
                         }
                     }
                 }
@@ -70,14 +70,14 @@ def call(Map configMap) {
             stage('image-build') {
                 steps {
                     sh """
-                    docker build -t ${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER} ./${COMPONENT}
+                    docker build -t ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} ./${COMPONENT}
                     docker images
                     """
                 }
             }
             // stage('image-scan') {
             //     steps {
-            //         sh "trivy image ${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
+            //         sh "trivy image ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} > ${COMPONENT}-image-scan-report-txt"
             //     }
             // }
             stage('image push') {
@@ -86,8 +86,8 @@ def call(Map configMap) {
                         withAWS(region:"${REGION}",credentials:'aws-creds') {
                             sh """
                             aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
-                            docker tag ${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER}
-                            docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${PROJECT}/${COMPONENT}:${env.APPVERSION}-${BUILD_NUMBER}
+                            docker tag ${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER} ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER}
+                            docker push ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${PROJECT}/${COMPONENT}:${APPVERSION}-${BUILD_NUMBER}
                             """
                         }
                     }
