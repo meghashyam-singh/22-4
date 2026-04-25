@@ -6,7 +6,7 @@ def call(Map configMap) {
             }
         }
         environment {
-            APPVERSION = ""
+            APPVERSION = ''
             REGION = "us-east-1"
             ACCOUNT_ID = "515138251473"
             COMPONENT = "${configMap.COMPONENT}"
@@ -33,7 +33,7 @@ def call(Map configMap) {
                 steps {
                     dir("${COMPONENT}") {
                         script {
-                            def APPVERSION = readFile('version.txt').trim()
+                            APPVERSION = readFile('version.txt').trim()
                             echo "APPVERSION IS: ${APPVERSION}"
                         }
                     }
