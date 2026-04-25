@@ -13,7 +13,7 @@ RUN pip3 install --prefix-/install -r requirements.txt
 
 FROM python:3.11-alpine3.22 
 WORKDIR /app
-RUN adddgroup -S roboshop
+RUN addgroup -S roboshop
 RUN adduser -S roboshop -G roboshop
 COPY --from=builder /app /app
 COPY --from=builder /install /usr/local
